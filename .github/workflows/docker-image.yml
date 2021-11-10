@@ -13,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Docker Compose Action
-        uses: actions/checkout@v2
-        with:
-          # relative path to compose file
-          compose-file: # optional, default is ./docker-compose.yml
-          # additional options to pass to `docker-compose down` command
-          down-flags: # optional, default is
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker-compose up -d
