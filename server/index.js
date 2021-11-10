@@ -1,17 +1,19 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
+app.use(bodyParser.json())
 app.use(cors());
 
-app.use('/login', (req, res) => {
-    console.log("creds received");
+app.post('/login', (req, res) => {
+    console.log(req.body.username);
     res.send({
-        token: 'test123'
+        verified: 'yes'
     });
 });
 

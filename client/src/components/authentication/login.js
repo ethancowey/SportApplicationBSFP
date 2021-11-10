@@ -1,38 +1,42 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import axios from "axios";
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => data.json())
+
+async function loginPost() {
+    const userDetails = {
+        username: String(document.getElementById('username').value),
+        password: String(document.getElementById('password').value)
+    };
+    axios.post('http://localhost:8080/login', userDetails)
+        .then((response) => { verified(response) })
 }
 
-export default function Login( {setToken} ) {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
+function verified(res) {
+    console.log(res.data.verified);
+    if(!res.data.verified){
+        sessionStorage.setItem('verified', 'false');
+        console.log("here");
+        return false
+    }
+    sessionStorage.setItem('verified', 'true');
+}
 
+export default function Login() {
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUser({
-            username,
-            password
-        });
-        setToken(token);
+        await loginPost();
+        console.log(sessionStorage.getItem('verified'));
     }
 
     return(
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <input type="text" placeholder="username" name="username" onChange={e => setUserName(e.target.value)}/>
+                    <input type="text" placeholder="username" name="username" id="username"/>
                 </label>
                 <label>
-                    <input type="password" placeholder="password" name="userPass" onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" placeholder="password" name="userPass" id="password"/>
                 </label>
                 <div>
                     <button type="submit">Submit</button>
