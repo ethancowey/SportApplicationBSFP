@@ -2,22 +2,17 @@ import React from 'react';
 import axios from "axios";
 
 
-async function loginPost() {
+async function registerPost() {
     const userDetails = {
-        username: String(document.getElementById('username').value),
-        password: String(document.getElementById('password').value)
+        username: String(document.getElementById('usernameRegister').value),
+        password: String(document.getElementById('passwordRegister').value)
     };
-    axios.post('http://localhost:8080/login', userDetails)
-        .then((response) => { verified(response) })
+    axios.post('http://localhost:8080/register', userDetails)
+        .then((response) => { nextPage(response) })
 }
 
-function verified(res) {
+function nextPage(res) {
     console.log(res.data.verified);
-    if(!res.data.verified){
-        sessionStorage.setItem('verified', 'false');
-        console.log("here");
-        return false
-    }
     sessionStorage.setItem('verified', 'true');
     //send to dashboard
 }
@@ -25,18 +20,19 @@ function verified(res) {
 export default function Login() {
     const handleSubmit = async e => {
         e.preventDefault();
-        await loginPost();
+        await registerPost();
         console.log(sessionStorage.getItem('verified'));
     }
 
     return(
         <div>
             <form onSubmit={handleSubmit}>
+                <h3>Register here</h3>
                 <label>
-                    <input type="text" placeholder="username" name="username" id="username"/>
+                    <input type="text" placeholder="username" name="username" id="usernameRegister"/>
                 </label>
                 <label>
-                    <input type="password" placeholder="password" name="userPass" id="password"/>
+                    <input type="password" placeholder="password" name="userPass" id="passwordRegister"/>
                 </label>
                 <div>
                     <button type="submit">Submit</button>
