@@ -6,33 +6,30 @@ import {useNavigate} from "react-router";
 //import {Link, useHistory} from "react-router-dom";
 
 
-async function loginPost() {
-    const userDetails = {
-        username: String(document.getElementById('username').value),
-        password: String(document.getElementById('password').value)
-    };
-    axios.post('http://localhost:8080/login', userDetails)
-        .then((response) => { verified(response) })
-}
 
-function verified(res) {
-    //const history = useHistory();
-    console.log(res.data.verified);
-    sessionStorage.setItem('verified', res.data.verified);
-    //
-    //const history = createBrowserHistory()
-    //return (<Link to="/dashboard">Continue to dashboard</Link>)
-    //history.push('/dashboard');
-    //send to dashboard
-}
 
 export default function Login() {
     const navigate = useNavigate();
     const handleSubmit = async e => {
         e.preventDefault();
         await loginPost();
-        navigate('/dashboard');
-        //return(<Link to="/dashboard">Proceed click here</Link>)
+    }
+
+    async function loginPost() {
+        const userDetails = {
+            username: String(document.getElementById('username').value),
+            password: String(document.getElementById('password').value)
+        };
+        axios.post('http://localhost:8080/login', userDetails)
+            .then((response) => { verified(response) })
+    }
+
+    async function verified(res) {
+        console.log(res.data.verified);
+        sessionStorage.setItem('verified', res.data.verified);
+        if (sessionStorage.getItem('verified') === 'yes') {
+            navigate('/dashboard');
+        }
     }
 
     return(
