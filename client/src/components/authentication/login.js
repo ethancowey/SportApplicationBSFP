@@ -13,12 +13,7 @@ async function loginPost() {
 
 function verified(res) {
     console.log(res.data.verified);
-    if(!res.data.verified){
-        sessionStorage.setItem('verified', 'false');
-        console.log("here");
-        return false
-    }
-    sessionStorage.setItem('verified', 'true');
+    sessionStorage.setItem('verified', res.data.verified);
     //send to dashboard
 }
 
@@ -26,7 +21,6 @@ export default function Login() {
     const handleSubmit = async e => {
         e.preventDefault();
         await loginPost();
-        console.log(sessionStorage.getItem('verified'));
     }
 
     return(

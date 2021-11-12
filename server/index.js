@@ -16,9 +16,15 @@ app.use(cors());
 app.post('/login', async (req, res) => {
     const auth = await login.loginUser({username: req.body.username, password: req.body.password})
     console.log(auth);
-    res.send({
-        verified: 'yes'
-    });
+    if (!auth){
+        res.send({
+            verified: 'no'
+        });
+    }else {
+        res.send({
+            verified: 'yes'
+        });
+    }
 });
 
 app.post('/register', async(req, res) => {
