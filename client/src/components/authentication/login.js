@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router";
+
+//import {Link} from "react-router-dom";
+//import {Link, useHistory} from "react-router-dom";
 
 
 async function loginPost() {
@@ -12,19 +16,28 @@ async function loginPost() {
 }
 
 function verified(res) {
+    //const history = useHistory();
     console.log(res.data.verified);
     sessionStorage.setItem('verified', res.data.verified);
+    //
+    //const history = createBrowserHistory()
+    //return (<Link to="/dashboard">Continue to dashboard</Link>)
+    //history.push('/dashboard');
     //send to dashboard
 }
 
 export default function Login() {
+    const navigate = useNavigate();
     const handleSubmit = async e => {
         e.preventDefault();
         await loginPost();
+        navigate('/dashboard');
+        //return(<Link to="/dashboard">Proceed click here</Link>)
     }
 
     return(
         <div>
+            <h1>Login Page</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <input type="text" placeholder="username" name="username" id="username"/>
