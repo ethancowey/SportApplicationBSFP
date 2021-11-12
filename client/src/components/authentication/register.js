@@ -1,27 +1,28 @@
 import React from 'react';
 import axios from "axios";
-
-
-async function registerPost() {
-    const userDetails = {
-        username: String(document.getElementById('usernameRegister').value),
-        password: String(document.getElementById('passwordRegister').value)
-    };
-    axios.post('http://localhost:8080/register', userDetails)
-        .then((response) => { nextPage(response) })
-}
-
-function nextPage(res) {
-    console.log(res.data.verified);
-    sessionStorage.setItem('verified', 'true');
-    //send to dashboard
-}
+import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate();
     const handleSubmit = async e => {
         e.preventDefault();
         await registerPost();
-        console.log(sessionStorage.getItem('verified'));
+    }
+
+    async function registerPost() {
+        const userDetails = {
+            username: String(document.getElementById('usernameRegister').value),
+            password: String(document.getElementById('passwordRegister').value)
+        };
+        axios.post('http://localhost:8080/register', userDetails)
+            .then((response) => { nextPage(response) })
+    }
+
+    function nextPage(res) {
+        console.log(res.data.verified);
+        sessionStorage.setItem('verified', 'true');
+        navigate('/dashboard');
     }
 
     return(
@@ -38,6 +39,7 @@ export default function Login() {
                     <button type="submit">Submit</button>
                 </div>
             </form>
+            <Link to='/'> Go to login page instead</Link>
         </div>
     )
 }
