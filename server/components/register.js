@@ -12,8 +12,6 @@ async function registerUser(user) {
         console.log('error connecting to the database');
         process.exit();
     });
-    //mongoose.connect('mongodb://mongodb:27017')
-   //     .then()
     const newUser = new UserTable(user)
     const userSaved = await newUser.save()
         .then(result => {
