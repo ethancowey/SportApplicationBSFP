@@ -2,6 +2,7 @@
   "name": "sportapplication",
   "version": "1.0.0",
   "scripts": {
+    "deps": "cd client && npm install",
     "start": "concurrently \"npm run client\" \"npm run server\"",
     "build": "cd client && npm run build",
     "server": "cd server && npm run start",
