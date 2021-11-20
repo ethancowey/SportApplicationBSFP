@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 
 const register = require('./components/register')
 const login = require('./components/login')
+const post = require('./components/addPost')
+
+const UserPosts = require('./mongoDrivers/userPosts')
 
 app.get("/", (req, res) => {
     res.send("Hello World");
@@ -33,6 +36,22 @@ app.post('/register', async(req, res) => {
     console.log(registered);
     res.send({
         verified: 'yes'
+    });
+});
+
+app.post('/post', async(req, res) => {
+    console.log(req.body.username);
+    const reqPost = new UserPosts({
+        username: req.body.username,
+        sport: req.body.sport,
+        distance: req.body.distance,
+        time: req.body.time,
+        description: req.body.description,
+        imageLink: req.body.imageLink})
+    const posted = await post.postDB(reqPost);
+    console.log(posted);
+    res.send({
+        posted: 'yes'
     });
 });
 
