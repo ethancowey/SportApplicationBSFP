@@ -22,6 +22,7 @@ export default function Login() {
     function nextPage(res) {
         console.log(res.data.verified);
         sessionStorage.setItem('verified', 'true');
+        sessionStorage.setItem('username', String(document.getElementById('usernameRegister').value));
         navigate('/dashboard');
     }
 
