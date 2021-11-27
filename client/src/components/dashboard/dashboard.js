@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
 
 export default function Dashboard() {
     const navigate = useNavigate();
+
+    useEffect(() =>{
+        // Retreive all the posts to be used in the html
+        const posts = getPosts();
+    })
+
+    async function getPosts(filter){
+        await axios.post('http://localhost:8080/feed', filter)
+            .then((response) => { console.log(response) })
+    }
+
+
     const handleSubmit = async e => {
         e.preventDefault();
         await makePost();
@@ -46,6 +58,9 @@ export default function Dashboard() {
                     <button type="submit">Submit</button>
                 </div>
             </form>
+        </div>
+        <div>
+            <h2>The Feed</h2>
         </div>
     </div>
     );

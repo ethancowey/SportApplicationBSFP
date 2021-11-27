@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const register = require('./components/register')
 const login = require('./components/login')
 const post = require('./components/addPost')
+const getPosts = require('./components/getPost')
 
 const UserPosts = require('./mongoDrivers/userPosts')
 
@@ -55,5 +56,10 @@ app.post('/post', async(req, res) => {
     });
 });
 
+app.post('/feed', async(req, res) => {
+    const posted = await getPosts.getPosts();
+    console.log(posted);
+    res.send(posted);
+});
 
 app.listen(8080,() => console.log("Server listening at port 8080"));
