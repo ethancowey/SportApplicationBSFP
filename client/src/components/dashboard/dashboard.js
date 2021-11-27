@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
 
 export default function Dashboard() {
     const navigate = useNavigate();
+    const [posts, allPosts] = useState('')
 
-    useEffect(() =>{
+    useEffect( () =>{
         // Retreive all the posts to be used in the html
-        const posts = getPosts();
-    })
+        getPosts()
+    }, [])
 
     async function getPosts(filter){
         await axios.post('http://localhost:8080/feed', filter)
-            .then((response) => { console.log(response) })
+            .then((response) => { allPosts(response.data) })
     }
 
 
