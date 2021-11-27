@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
+import '../../App.css';
 
 export default function Dashboard() {
     const navigate = useNavigate();
@@ -67,7 +68,12 @@ export default function Dashboard() {
             <h2>The Feed</h2>
             <div>
                 {posts.length > 0 && posts.map((post) => (
-                    <p>{post.description}</p>
+                    <div className={"Post-Style"}>
+                        <p>{post.sport}</p>
+                        <p>{post.distance}</p>
+                        <p>{post.time}</p>
+                        <p>{post.description}</p>
+                    </div>
                     ))}
                     </div>
         </div>
