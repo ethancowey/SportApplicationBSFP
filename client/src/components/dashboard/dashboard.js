@@ -4,18 +4,26 @@ import {useNavigate} from "react-router";
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    const [posts, allPosts] = useState('')
+    const [posts, setPosts] = useState([]);
 
-    useEffect( () =>{
-        // Retreive all the posts to be used in the html
-        getPosts()
-    }, [])
-
-    async function getPosts(filter){
-        await axios.post('http://localhost:8080/feed', filter)
-            .then((response) => { allPosts(response.data) })
-    }
-
+    useEffect(()=>{
+        async function getPosts() {
+            const filter = false;
+            const retrievedPosts = await axios.post('http://localhost:8080/feed', filter)
+                .then((response) => {
+                    return response.data
+                }).catch(err => (err))
+            if(retrievedPosts.length !== posts.length)
+                setPosts(retrievedPosts);
+        }
+        getPosts().then()
+        console.log(posts);
+    }, [posts])
+   // const feed = posts.map((post) =>{
+     //   return <div>
+       //     <p>{post}</p>
+        //</div>
+    //})
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -62,6 +70,7 @@ export default function Dashboard() {
         </div>
         <div>
             <h2>The Feed</h2>
+            <p>{posts.length}</p>
         </div>
     </div>
     );
