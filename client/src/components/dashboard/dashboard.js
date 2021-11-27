@@ -19,11 +19,6 @@ export default function Dashboard() {
         getPosts().then()
         console.log(posts);
     }, [posts])
-   // const feed = posts.map((post) =>{
-     //   return <div>
-       //     <p>{post}</p>
-        //</div>
-    //})
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -70,7 +65,11 @@ export default function Dashboard() {
         </div>
         <div>
             <h2>The Feed</h2>
-            <p>{posts.length}</p>
+            <div>
+                {posts.length > 0 && posts.map((post) => (
+                    <p>{post.description}</p>
+                    ))}
+                    </div>
         </div>
     </div>
     );
