@@ -27,6 +27,7 @@ export default function Login() {
         console.log(res.data.verified);
         sessionStorage.setItem('verified', res.data.verified);
         if (sessionStorage.getItem('verified') === 'yes') {
+            sessionStorage.setItem('username', String(document.getElementById('username').value));
             navigate('/dashboard');
         }
     }
