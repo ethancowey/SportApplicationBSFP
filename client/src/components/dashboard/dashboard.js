@@ -69,10 +69,11 @@ export default function Dashboard() {
             <div>
                 {posts.length > 0 && posts.map((post) => (
                     <div className={"Post-Style"}>
-                        <p>{post.sport}</p>
-                        <p>{post.distance}</p>
-                        <p>{post.time}</p>
-                        <p>{post.description}</p>
+                        <h3>{post.username} posted a new update</h3>
+                        <p>Sport undertaken:{post.sport}</p>
+                        <p>Distance travelled:{post.distance}</p>
+                        <p>Time taken:{post.time}</p>
+                        <p>{post.username}'s thoughts {post.description}</p>
                     </div>
                     ))}
                     </div>
