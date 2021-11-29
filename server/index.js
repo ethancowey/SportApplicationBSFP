@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const bcrypt = require('bcryptjs')
 
 const register = require('./components/register')
 const login = require('./components/login')
@@ -18,9 +19,9 @@ app.use(bodyParser.json())
 app.use(cors());
 
 app.post('/login', async (req, res) => {
-    const auth = await login.loginUser({username: req.body.username, password: req.body.password})
+    const auth = await login.loginUser({username: req.body.username}, req.body.password)
     console.log(auth);
-    if (!auth){
+    if (auth === false){
         res.send({
             verified: 'no'
         });
@@ -32,8 +33,10 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/register', async(req, res) => {
-    console.log(req.body.username);
-    const registered = await register.registerUser({username: req.body.username, password: req.body.password});
+    // Compute a bcrypt hash of the password to be stored in the database
+    const hashPass = bcrypt.hashSync(req.body.password);
+    console.log(hashPass);
+    const registered = await register.registerUser({username: req.body.username, password: hashPass});
     console.log(registered);
     res.send({
         verified: 'yes'
