@@ -29,6 +29,8 @@ export default function Login() {
         if (sessionStorage.getItem('verified') === 'yes') {
             sessionStorage.setItem('username', String(document.getElementById('username').value));
             navigate('/dashboard');
+        } else {
+            alert('Incorrect password');
         }
     }
 
