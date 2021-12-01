@@ -9,7 +9,8 @@ const uniqueUsername = require('./components/uniqueUsername')
 const login = require('./components/login')
 const post = require('./components/addPost')
 const getPosts = require('./components/getPost')
-
+const speedGenerator = require('./components/speed')
+const calorieGenerator = require('./components/calories')
 const UserPosts = require('./mongoDrivers/userPosts')
 
 app.get("/", (req, res) => {
@@ -54,13 +55,22 @@ app.post('/register', async(req, res) => {
 
 app.post('/post', async(req, res) => {
     console.log(req.body.username);
+
+    const userSpeed = speedGenerator.speedCalc(req.body.distance, req.body.time);
+
+    const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, req.body.currentweight);
+
     const reqPost = new UserPosts({
         username: req.body.username,
         sport: req.body.sport,
         distance: req.body.distance,
         time: req.body.time,
         description: req.body.description,
-        imageLink: req.body.imageLink})
+        speed: userSpeed,
+        calories: userCalories
+    })
+
+
     const posted = await post.postDB(reqPost);
     console.log(posted);
     res.send({
