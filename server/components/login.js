@@ -17,6 +17,9 @@ async function loginUser(username, plainPassword) {
         .then(result => {
             return result
         })
+    if (userAccount === null){
+        return false
+    }
     const correctHash = bcrypt.compareSync(plainPassword, userAccount.password); //compare plaintext to password salt does not need saving
     return correctHash
 }
