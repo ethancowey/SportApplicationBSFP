@@ -2,6 +2,7 @@ import './App.css';
 import Dashboard from './components/dashboard/dashboard';
 import Login from './components/authentication/login';
 import Register from './components/authentication/register'
+import Post from './components/dashboard/makePost'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import React from "react"
 
@@ -19,6 +20,9 @@ function App() {
 
               </Route>
               <Route path="/dashboard" element={<Dashboard />}>
+
+              </Route>
+              <Route path="/post" element={<Post />}>
 
               </Route>
           </Routes>
