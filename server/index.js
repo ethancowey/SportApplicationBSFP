@@ -35,7 +35,8 @@ app.post('/login', async (req, res) => {
 
 app.post('/register', async(req, res) => {
     // Compute a bcrypt hash of the password to be stored in the database
-    const unique = uniqueUsername(req.body.username);
+    const unique = await uniqueUsername.isUnique(req.body.username);
+    console.log(unique);
     if(unique != null){
         res.send({
             verified: 'no'

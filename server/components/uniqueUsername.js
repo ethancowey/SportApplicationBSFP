@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const UserTable = require('../mongoDrivers/userTable');
 
-async function isUnique(username){
+async function isUnique(usernameInp){
     await mongoose.connect('mongodb://mongo:27017', {
         useNewUrlParser: true
     }).then(() => {
@@ -11,7 +11,7 @@ async function isUnique(username){
         console.log('error connecting to the database');
         process.exit();
     });
-    const newUsername = await UserTable.findOne(username)
+    const newUsername = await UserTable.findOne({username: usernameInp})
         .then(result => {
             return result
         })
