@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const UserTable = require('../mongoDrivers/userTable')
+const bcrypt = require('bcryptjs')
 
 
-async function loginUser(user) {
+async function loginUser(username, plainPassword) {
     await mongoose.connect('mongodb://mongo:27017', {
         useNewUrlParser: true
     }).then(() => {
@@ -12,11 +13,15 @@ async function loginUser(user) {
         console.log('error connecting to the database');
         process.exit();
     });
-    const userSaved = await UserTable.findOne(user)
+    const userAccount = await UserTable.findOne(username)
         .then(result => {
             return result
         })
-    return userSaved
+    if (userAccount === null){
+        return false
+    }
+    const correctHash = bcrypt.compareSync(plainPassword, userAccount.password); //compare plaintext to password salt does not need saving
+    return correctHash
 }
 
 module.exports.loginUser = loginUser

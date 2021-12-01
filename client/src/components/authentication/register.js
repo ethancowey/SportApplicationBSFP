@@ -21,9 +21,13 @@ export default function Login() {
 
     function nextPage(res) {
         console.log(res.data.verified);
-        sessionStorage.setItem('verified', 'true');
-        sessionStorage.setItem('username', String(document.getElementById('usernameRegister').value));
-        navigate('/dashboard');
+        sessionStorage.setItem('verified', res.data.verified);
+        if (sessionStorage.getItem('verified') === 'yes') {
+            sessionStorage.setItem('username', String(document.getElementById('usernameRegister').value));
+            navigate('/dashboard');
+        } else {
+            alert('Username already in use');
+        }
     }
 
     return(
