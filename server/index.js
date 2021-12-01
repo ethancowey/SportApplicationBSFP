@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcryptjs')
 
 const register = require('./components/register')
-const uniqueUsername = require('./components/uniqueUsername')
+const getUser = require('./components/getUser')
 const login = require('./components/login')
 const post = require('./components/addPost')
 const getPosts = require('./components/getPost')
@@ -36,7 +36,7 @@ app.post('/login', async (req, res) => {
 
 app.post('/register', async(req, res) => {
     // Compute a bcrypt hash of the password to be stored in the database
-    const unique = await uniqueUsername.isUnique(req.body.username);
+    const unique = await getUser.getUsername(req.body.username); // if returns null username is unique
     console.log(unique);
     if(unique != null){
         res.send({
@@ -56,9 +56,13 @@ app.post('/register', async(req, res) => {
 app.post('/post', async(req, res) => {
     console.log(req.body.username);
 
+    const  userData = await getUser.getUsername(req.body.username);
+
+    const weight = userData.weight;
+
     const userSpeed = speedGenerator.speedCalc(req.body.distance, req.body.time);
 
-    const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, req.body.currentweight);
+    const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, weight);
 
     const reqPost = new UserPosts({
         username: req.body.username,
