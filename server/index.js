@@ -70,7 +70,7 @@ app.post('/post', async(req, res) => {
     // calculates speed in both mph and kph
     const userSpeed = speedGenerator.speedCalc(req.body.distance, req.body.time);
     //calculates calories burned
-    const userCalories = calorieGenerator.caloriesCalc('med', req.body.time, weight);
+    const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, weight);
 
     console.log(userCalories);
     console.log(userSpeed);

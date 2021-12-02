@@ -16,6 +16,7 @@ export default function Dashboard() {
         const postDetails = {
             username: String(sessionStorage.getItem('username')),
             sport: String(document.getElementById('postSport').value),
+            intensity: String(document.getElementById('postIntensity').value),
             distance: String(document.getElementById('postDistance').value),
             time: String(document.getElementById('postTime').value),
             description: String(document.getElementById('postDescription').value)
@@ -39,6 +40,13 @@ export default function Dashboard() {
                             <option value="swimming">Swimming</option>
                             <option value="walking">Walking</option>
                             <option value="cycling">Cycling</option>
+                        </select>
+                    </label>
+                    <label>Intensity
+                        <select id="postIntensity" name="intensity">
+                            <option value="low">Low</option>
+                            <option value="med">Medium</option>
+                            <option value="high">High</option>
                         </select>
                     </label>
                     <label>
