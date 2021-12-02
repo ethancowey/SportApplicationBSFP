@@ -61,6 +61,7 @@ app.post('/register', async(req, res) => {
 app.post('/post', async(req, res) => {
     console.log(req.body.username);
 
+    // get the users weight
     const  userData = await getUser.getUsername(req.body.username);
 
     console.log(userData);
@@ -73,7 +74,8 @@ app.post('/post', async(req, res) => {
     const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, weight);
 
     console.log(userCalories);
-    console.log(userSpeed);
+    console.log(userSpeed.kph);
+    console.log(userSpeed.mph);
 
     const reqPost = new UserPosts({
         username: req.body.username,
@@ -86,7 +88,7 @@ app.post('/post', async(req, res) => {
         calories: userCalories
     })
 
-
+    // post calculated data and the user input to the database so it can be displayed in users feeds
     const posted = await post.postDB(reqPost);
     console.log(posted);
     res.send({
