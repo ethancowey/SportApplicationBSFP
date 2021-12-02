@@ -33,6 +33,8 @@ export default function Dashboard() {
                         <p>Sport undertaken:{post.sport}</p>
                         <p>Distance travelled:{post.distance}</p>
                         <p>Time taken:{post.time}</p>
+                        <p>Calculated calories burned:{post.calories}</p>
+                        <p>Calculated average speed:{post.speedkph} kph / {post.speedmph} mph</p>
                         <p>{post.username}'s thoughts {post.description}</p>
                     </div>
                     ))}

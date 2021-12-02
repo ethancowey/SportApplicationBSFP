@@ -16,6 +16,7 @@ export default function Dashboard() {
         const postDetails = {
             username: String(sessionStorage.getItem('username')),
             sport: String(document.getElementById('postSport').value),
+            intensity: String(document.getElementById('postIntensity').value),
             distance: String(document.getElementById('postDistance').value),
             time: String(document.getElementById('postTime').value),
             description: String(document.getElementById('postDescription').value)
@@ -33,14 +34,26 @@ export default function Dashboard() {
             <div>
                 <h2>Make a post</h2>
                 <form onSubmit={handleSubmit}>
-                    <label>
-                        <input type="text" placeholder="sport" name="sport" id="postSport"/>
+                    <label>Sport Undertaken
+                        <select id="postSport" name="sport">
+                            <option value="running">Running</option>
+                            <option value="swimming">Swimming</option>
+                            <option value="walking">Walking</option>
+                            <option value="cycling">Cycling</option>
+                        </select>
+                    </label>
+                    <label>Intensity
+                        <select id="postIntensity" name="intensity">
+                            <option value="low">Low</option>
+                            <option value="med">Medium</option>
+                            <option value="high">High</option>
+                        </select>
                     </label>
                     <label>
-                        <input type="text" placeholder="distance" name="distance" id="postDistance"/>
+                        <input type="number" placeholder="distance" name="distance" id="postDistance"/>
                     </label>
                     <label>
-                        <input type="text" placeholder="time" name="time" id="postTime"/>
+                        <input type="number" placeholder="time" name="time" id="postTime"/>
                     </label>
                     <label>
                         <input type="text" placeholder="description" name="description" id="postDescription"/>

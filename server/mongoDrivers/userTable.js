@@ -6,6 +6,14 @@ const userTableSchema = mongoose.Schema({
     },
     password: {type: String,
         required: true
+    },
+    weight: {
+        type: Number,
+        required: false
+    },
+    favouriteSport: {
+        type: String,
+        required: false
     }
 })
 
