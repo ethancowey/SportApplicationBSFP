@@ -13,7 +13,9 @@ export default function Login() {
     async function registerPost() {
         const userDetails = {
             username: String(document.getElementById('usernameRegister').value),
-            password: String(document.getElementById('passwordRegister').value)
+            password: String(document.getElementById('passwordRegister').value),
+            weight: String(document.getElementById('weightRegister').value),
+            favouriteSport: String(document.getElementById('sportRegister').value)
         };
         axios.post('http://localhost:8080/register', userDetails)
             .then((response) => { nextPage(response) })
@@ -39,6 +41,17 @@ export default function Login() {
                 </label>
                 <label>
                     <input type="password" placeholder="password" name="userPass" id="passwordRegister"/>
+                </label>
+                <label>
+                    <input type="number" placeholder="weight in kg" name="userWeight" id="weightRegister"/>
+                </label>
+                <label>Your favourite sport
+                    <select id="sportRegister" name="userFavourite">
+                        <option value="running">Running</option>
+                        <option value="swimming">Swimming</option>
+                        <option value="walking">Walking</option>
+                        <option value="cycling">Cycling</option>
+                    </select>
                 </label>
                 <div>
                     <button type="submit">Submit</button>

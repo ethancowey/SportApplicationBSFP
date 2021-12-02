@@ -8,7 +8,7 @@ const userTableSchema = mongoose.Schema({
         required: true
     },
     weight: {
-        type: String,
+        type: Number,
         required: false
     },
     favouriteSport: {

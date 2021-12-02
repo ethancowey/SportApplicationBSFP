@@ -35,7 +35,7 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/register', async(req, res) => {
-    // Compute a bcrypt hash of the password to be stored in the database
+    // check username is unique
     const unique = await getUser.getUsername(req.body.username); // if returns null username is unique
     console.log(unique);
     if(unique != null){
@@ -43,9 +43,14 @@ app.post('/register', async(req, res) => {
             verified: 'no'
         })
     }else {
+        // Compute a bcrypt hash of the password to be stored in the database
         const hashPass = bcrypt.hashSync(req.body.password);
         console.log(hashPass);
-        const registered = await register.registerUser({username: req.body.username, password: hashPass});
+        const registered = await register.registerUser({username: req.body.username,
+            password: hashPass,
+            weight: req.body.weight,
+            favouriteSport: req.body.favouriteSport
+        });
         console.log(registered);
         res.send({
             verified: 'yes'
@@ -58,11 +63,17 @@ app.post('/post', async(req, res) => {
 
     const  userData = await getUser.getUsername(req.body.username);
 
+    console.log(userData);
+
     const weight = userData.weight;
 
+    // calculates speed in both mph and kph
     const userSpeed = speedGenerator.speedCalc(req.body.distance, req.body.time);
+    //calculates calories burned
+    const userCalories = calorieGenerator.caloriesCalc('med', req.body.time, weight);
 
-    const userCalories = calorieGenerator.caloriesCalc(req.body.intensity, req.body.time, weight);
+    console.log(userCalories);
+    console.log(userSpeed);
 
     const reqPost = new UserPosts({
         username: req.body.username,
@@ -70,7 +81,8 @@ app.post('/post', async(req, res) => {
         distance: req.body.distance,
         time: req.body.time,
         description: req.body.description,
-        speed: userSpeed,
+        speedkph: userSpeed.kph,
+        speedmph:userSpeed.mph,
         calories: userCalories
     })
 

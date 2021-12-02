@@ -7,10 +7,13 @@ const userPostsSchema = mongoose.Schema({
     sport: {type: String,
         required: true
     },
-    distance: {type: String},
-    time: {type: String},
+    distance: {type: Number},
+    time: {type: Number},
     description: {type: String},
-    imageLink: {type: String}
+    speedkph: {type: Number},
+    speedmph: {type: Number},
+    calories: {type: Number}
+
 })
 
 module.exports = mongoose.model('UserPosts', userPostsSchema)
