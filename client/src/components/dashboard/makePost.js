@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router";
+// import {useNavigate} from "react-router";
 import '../../App.css';
 import {Link} from "react-router-dom";
 
 export default function Dashboard() {
-    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -22,11 +21,11 @@ export default function Dashboard() {
             description: String(document.getElementById('postDescription').value)
         };
         axios.post('http://localhost:8080/post', postDetails)
-            .then((response) => { refreshPage(response) })
+            .then((response) => { serverReply(response) })
     }
-    function refreshPage(res) {
-        console.log(res);
-        navigate('/post');
+    function serverReply(res) {
+        console.log(res.data.message);
+        alert(res.data.message)
     }
     return(
         <div>
