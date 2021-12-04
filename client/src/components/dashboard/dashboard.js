@@ -8,8 +8,8 @@ export default function Dashboard() {
 
     useEffect(()=>{
         async function getPosts() {
-            const filter = false;
-            const retrievedPosts = await axios.post('http://localhost:8080/feed', filter)
+            const filter = sessionStorage.getItem('username');
+            const retrievedPosts = await axios.post('http://localhost:8080/feed', {username: filter})
                 .then((response) => {
                     return response.data
                 }).catch(err => (err))

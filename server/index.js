@@ -11,6 +11,7 @@ const post = require('./components/addPost')
 const getPosts = require('./components/getPost')
 const speedGenerator = require('./components/speed')
 const calorieGenerator = require('./components/calories')
+const postRanker = require('./components/postRanker')
 const UserPosts = require('./mongoDrivers/userPosts')
 
 app.get("/", (req, res) => {
@@ -97,9 +98,12 @@ app.post('/post', async(req, res) => {
 });
 
 app.post('/feed', async(req, res) => {
+    const  userData = await getUser.getUsername(req.body.username);
     const posted = await getPosts.getPosts();
-    console.log(posted);
-    res.send(posted);
+    console.log(userData.favouriteSport)
+    const rankedFeed = postRanker.ranking(posted, userData.favouriteSport);
+    //console.log(rankedFeed);
+    res.send(rankedFeed);
 });
 
 app.listen(8080,() => console.log("Server listening at port 8080"));
