@@ -1,5 +1,5 @@
 import './App.css';
-import Dashboard from './components/dashboard/dashboard';
+import Feed from './components/dashboard/feed';
 import Login from './components/authentication/login';
 import Register from './components/authentication/register'
 import Post from './components/dashboard/makePost'
@@ -19,7 +19,7 @@ function App() {
               <Route path="/register" element={<Register />}>
 
               </Route>
-              <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="/dashboard" element={<Feed />}>
 
               </Route>
               <Route path="/post" element={<Post />}>

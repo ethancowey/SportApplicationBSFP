@@ -12,6 +12,7 @@ const getPosts = require('./components/getPost')
 const speedGenerator = require('./components/speed')
 const calorieGenerator = require('./components/calories')
 const postRanker = require('./components/postRanker')
+const serverFilter = require('./components/serverFilter')
 const UserPosts = require('./mongoDrivers/userPosts')
 
 app.get("/", (req, res) => {
@@ -89,12 +90,21 @@ app.post('/post', async(req, res) => {
         calories: userCalories
     })
 
-    // post calculated data and the user input to the database so it can be displayed in users feeds
-    const posted = await post.postDB(reqPost);
-    console.log(posted);
-    res.send({
-        posted: 'yes'
-    });
+    const maliciousInput = serverFilter.filter(reqPost.description);
+    if (maliciousInput === true){
+        res.send({
+            posted: 'no',
+            message: 'Please avoid using <, >, &, *, {, }, $ in your description'
+        });
+    }else {
+        // post calculated data and the user input to the database so it can be displayed in users feeds
+        const posted = await post.postDB(reqPost);
+        console.log(posted);
+        res.send({
+            posted: 'yes',
+            message: 'Post made check it out on the feed'
+        });
+    }
 });
 
 app.post('/feed', async(req, res) => {
