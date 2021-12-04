@@ -28,7 +28,7 @@ export default function Dashboard() {
             <h2>The Feed</h2>
             <div>
                 {posts.length > 0 && posts.map((post) => (
-                    <div className={"Post-Style"}>
+                    <div className={"Post-Style"} key={post._id}>
                         <h3>{post.username} posted a new update</h3>
                         <p>Sport undertaken:{post.sport}</p>
                         <p>Distance travelled:{post.distance}</p>
