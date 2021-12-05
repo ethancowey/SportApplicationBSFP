@@ -1,3 +1,9 @@
+/**
+ * Adds a new user to the user table to the mongoDB database.
+ *
+ * @param {JSON} Document of the user to be added to the database
+ * @return {JSON} Document of the user added
+ */
 const mongoose = require('mongoose');
 const UserTable = require('../mongoDrivers/userTable')
 

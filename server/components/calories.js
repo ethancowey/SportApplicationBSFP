@@ -1,3 +1,11 @@
+/**
+ * Calculates the amount of calories burned using the users inputs using metabolic rates.
+ *
+ * @param {string} intensity a string representing the intensity of the workout.
+ * @param {number} time taken in minutes for the exercise.
+ * @param {number} weight a number of the users weight in kg.
+ * @return {number} The amount of calories burned in the exercise.
+ */
 function caloriesCalc(intensity, time, weight){
     console.log(weight);
     console.log(time);

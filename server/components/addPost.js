@@ -1,3 +1,9 @@
+/**
+ * Posts a users post to the post table in the mongoDB database and returns the post added.
+ *
+ * @param {JSON} Document to be added to the database.
+ * @return {JSON} Document that was added to the database.
+ */
 const mongoose = require('mongoose');
 const PostTable = require('../mongoDrivers/userPosts')
 

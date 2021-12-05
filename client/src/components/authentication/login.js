@@ -2,10 +2,6 @@ import React from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
-//import {Link, useHistory} from "react-router-dom";
-
-
-
 
 export default function Login() {
     const navigate = useNavigate();
