@@ -22,8 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: iansu/codecov-action-node@v1
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
