@@ -8,11 +8,12 @@
     "server": "cd server && npm run start",
     "client": "cd client && npm run start",
     "test": "concurrently \"npm run clientTest\" \"npm run serverTest\"",
-    "clientTest":"cd client && npm run test -- --coverage",
+    "clientTest": "cd client && npm run test -- --coverage",
     "serverTest": "cd server && npm run test -- --coverage"
   },
   "dependencies": {
-    "codecov": "^3.8.3"
+    "codecov": "^3.8.3",
+    "jest": "^27.4.3"
   },
   "devDependencies": {
     "concurrently": "^6.3.0"
