@@ -7,7 +7,9 @@
     "build": "cd client && npm run build",
     "server": "cd server && npm run start",
     "client": "cd client && npm run start",
-    "test": "cd client && npm run test -- --coverage"
+    "test": "concurrently \"npm run clientTest\" \"npm run serverTest\"",
+    "clientTest":"cd client && npm run test -- --coverage",
+    "serverTest": "cd server && npm run test -- --coverage"
   },
   "dependencies": {
     "codecov": "^3.8.3"
