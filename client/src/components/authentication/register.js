@@ -1,15 +1,21 @@
+/**
+ * The frontend page to interact with users registering in to the system and sending/receiving from the database.
+ */
 import React from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
     const navigate = useNavigate();
     const handleSubmit = async e => {
         e.preventDefault();
         await registerPost();
     }
-
+    /**
+     * Called when the html form is submitted and sends the details to the server to be processed. The response of the
+     * server is then sent to nextPage()
+     */
     async function registerPost() {
         const userDetails = {
             username: String(document.getElementById('usernameRegister').value),
@@ -20,13 +26,17 @@ export default function Login() {
         axios.post('http://localhost:8080/register', userDetails)
             .then((response) => { nextPage(response) })
     }
-
+    /**
+     * Called by registerPost to process the servers response if the user was made it will have the verified property of
+     * yes if not it will be no as that username must already exist.
+     * @param res the servers response if the registration was successful or not
+     */
     function nextPage(res) {
         console.log(res.data.verified);
         sessionStorage.setItem('verified', res.data.verified);
         if (sessionStorage.getItem('verified') === 'yes') {
             sessionStorage.setItem('username', String(document.getElementById('usernameRegister').value));
-            navigate('/dashboard');
+            navigate('/dashboard'); //takes user to the next page as successful registration was made
         } else {
             alert('Username already in use');
         }

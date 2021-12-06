@@ -1,11 +1,18 @@
+/**
+ * The frontend page which requests the server sends a tailored feed for the current user.
+ */
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import '../../App.css';
 import {Link} from "react-router-dom";
 
 export default function Feed() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]); // the prop which holds the posts and is displayed in the html
 
+    /**
+     * On load of the page it will request the posts from the server which are tailored to the current user. They are then
+     * used as a prop to be displayed in the html.
+     */
     useEffect(()=>{
         async function getPosts() {
             const filter = sessionStorage.getItem('username');
@@ -14,7 +21,7 @@ export default function Feed() {
                     return response.data
                 }).catch(err => (err))
             if(retrievedPosts.length !== posts.length)
-                setPosts(retrievedPosts);
+                setPosts(retrievedPosts); // sets the posts prop to the posts from the server
         }
         getPosts().then()
         console.log(posts);

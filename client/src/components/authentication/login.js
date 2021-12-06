@@ -1,3 +1,6 @@
+/**
+ * The frontend page to interact with users logging in to the system and sending/receiving from the database.
+ */
 import React from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router";
@@ -9,7 +12,10 @@ export default function Login() {
         e.preventDefault();
         await loginPost();
     }
-
+    /**
+     * Called when the html form is submitted and sends the details to the server to be processed. The response of the
+     * server is then sent to verified()
+     */
     async function loginPost() {
         const userDetails = {
             username: String(document.getElementById('username').value),
@@ -18,7 +24,11 @@ export default function Login() {
         axios.post('http://localhost:8080/login', userDetails)
             .then((response) => { verified(response) })
     }
-
+    /**
+     * Called by loginPost to process the servers response to if a user with those details existed or not. If they did
+     * user is sent to the next page. If not the user is alerted the username or password was incorrect
+     * @param res the servers response if the login was successful or not
+     */
     async function verified(res) {
         console.log(res.data.verified);
         sessionStorage.setItem('verified', res.data.verified);
@@ -26,7 +36,7 @@ export default function Login() {
             sessionStorage.setItem('username', String(document.getElementById('username').value));
             navigate('/dashboard');
         } else {
-            alert('Incorrect password');
+            alert('Incorrect username or password');
         }
     }
 
