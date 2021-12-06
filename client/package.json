@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.1",
     "axios": "^0.24.0",
     "history": "^5.1.0",
     "prop-types": "^15.7.2",

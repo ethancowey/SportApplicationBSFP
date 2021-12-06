@@ -51,7 +51,7 @@ export default function Login() {
                     <input type="password" placeholder="password" name="userPass" id="password"/>
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="subLogin">Submit</button>
                 </div>
             </form>
             <Link to='/register'> Go to registration page instead</Link>
