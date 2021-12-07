@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Post from '../components/dashboard/makePost'
+import Post from '../components/dashboard/MakePost'
 import {MemoryRouter} from "react-router-dom";
 
 

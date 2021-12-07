@@ -3,10 +3,10 @@
  * pages and is rendered by index.js.
  */
 import './App.css';
-import Feed from './components/dashboard/feed';
-import Login from './components/authentication/login';
-import Register from './components/authentication/register'
-import Post from './components/dashboard/makePost'
+import Feed from './components/dashboard/Feed';
+import Login from './components/authentication/Login';
+import Register from './components/authentication/Register'
+import Post from './components/dashboard/MakePost'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import React from "react"
 

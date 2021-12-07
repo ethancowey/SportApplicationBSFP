@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Feed from "../components/dashboard/feed";
+import Feed from "../components/dashboard/Feed";
 import {MemoryRouter} from "react-router-dom";
 
 

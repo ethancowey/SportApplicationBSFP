@@ -18,3 +18,8 @@ test('Testing ranking of 2 posts neither are favourite sport', async () => {
     const twoPosts = ranker.ranking([{sport: 'cycling', speedmph:3},{sport: 'swimming', speedmph:4}],'running')
     expect(twoPosts).toStrictEqual([{sport: 'swimming', speedmph:4}, {sport: 'cycling', speedmph:3}])
 })
+
+test('Testing ranking if no speed given', async () => {
+    const twoPosts = ranker.ranking([{sport: 'cycling', distance:3, time:30},{sport: 'swimming', distance:3, time:30}],'running')
+    expect(twoPosts[1].sport).toBe('swimming')
+})

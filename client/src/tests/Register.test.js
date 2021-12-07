@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Register from "../components/authentication/register";
+import Register from "../components/authentication/Register";
 import {MemoryRouter} from "react-router-dom";
 
 
