@@ -46,6 +46,7 @@
     "axios": "^0.24.0",
     "history": "^5.1.0",
     "prop-types": "^15.7.2",
+    "react-ga": "^3.3.0",
     "react-router-dom": "^6.0.2"
   }
 }
