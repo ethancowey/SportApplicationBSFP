@@ -6,6 +6,7 @@ MERN stack application which runs using docker as part of my assessment for CSC3
 1. How to run the project.
 2. Running tests.
 3. Usage and 3 tier architecture.
+4. Coding Conventions
 
 ## 1. How to run the project
 
@@ -42,3 +43,11 @@ These tests also run externally using github actions when pushed to the repo, an
  by codecov.io.
  
  ## 3. Usage and 3 tier architecture
+
+## 4. Coding Conventions
+When working on this project please follow these conventions:
+1. 1 tab indentation
+2. Single quote strings ''
+3. End lines with semi-colons ;
+4. Import statements in server backend with require syntax
+5. Import statements in client frontend with import syntax

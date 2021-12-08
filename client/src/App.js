@@ -5,34 +5,34 @@
 import './App.css';
 import Feed from './components/dashboard/Feed';
 import Login from './components/authentication/Login';
-import Register from './components/authentication/Register'
-import Post from './components/dashboard/MakePost'
+import Register from './components/authentication/Register';
+import Post from './components/dashboard/MakePost';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import React from "react"
+import React from 'react';
 
 
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<Login />}>
+	return (
+		<div className="App">
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Login />}>
 
-              </Route>
-              <Route path="/register" element={<Register />}>
+					</Route>
+					<Route path="/register" element={<Register />}>
 
-              </Route>
-              <Route path="/dashboard" element={<Feed />}>
+					</Route>
+					<Route path="/dashboard" element={<Feed />}>
 
-              </Route>
-              <Route path="/post" element={<Post />}>
+					</Route>
+					<Route path="/post" element={<Post />}>
 
-              </Route>
-          </Routes>
-      </BrowserRouter>
-    </div>
-  );
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
