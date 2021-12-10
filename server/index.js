@@ -10,6 +10,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const cluster = require('cluster');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require("path");
 
 const register = require('./components/register');
 const getUser = require('./components/getUser');
@@ -35,6 +38,8 @@ if (cluster.isMaster) {
 } else {
 	app.use(bodyParser.json());
 	app.use(cors());
+	const logStream = fs.createWriteStream(path.join(__dirname, 'log'), {flags: 'a'})
+	app.use(morgan('short', {'stream': logStream}));
 	/** /login authenticates user logins by calling the loginUser function from login.js and responds with the result this
      * involves bcrypt hashing
      */
