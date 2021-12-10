@@ -30,7 +30,6 @@ export default function Login() {
      * @param res the servers response if the login was successful or not
      */
 	async function verified(res) {
-		console.log(res.data.verified);
 		sessionStorage.setItem('verified', res.data.verified);
 		if (sessionStorage.getItem('verified') === 'yes') {
 			sessionStorage.setItem('username', String(document.getElementById('username').value));

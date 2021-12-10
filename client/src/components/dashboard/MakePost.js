@@ -35,7 +35,6 @@ export default function Dashboard() {
      * @param res the servers response to if it made the post or not
      */
 	function serverReply(res) {
-		console.log(res.data.message);
 		alert(res.data.message);
 	}
 	return(

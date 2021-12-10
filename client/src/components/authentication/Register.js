@@ -32,7 +32,6 @@ export default function Register() {
      * @param res the servers response if the registration was successful or not
      */
 	function nextPage(res) {
-		console.log(res.data.verified);
 		sessionStorage.setItem('verified', res.data.verified);
 		if (sessionStorage.getItem('verified') === 'yes') {
 			sessionStorage.setItem('username', String(document.getElementById('usernameRegister').value));

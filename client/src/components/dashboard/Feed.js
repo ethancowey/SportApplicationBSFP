@@ -24,7 +24,6 @@ export default function Feed() {
 				setPosts(retrievedPosts); // sets the posts prop to the posts from the server
 		}
 		getPosts().then();
-		console.log(posts);
 	}, [posts]);
 
 	return(
