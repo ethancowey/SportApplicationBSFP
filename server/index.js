@@ -38,8 +38,8 @@ if (cluster.isMaster) {
 } else {
 	app.use(bodyParser.json());
 	app.use(cors());
-	const logStream = fs.createWriteStream(path.join(__dirname, 'log'), {flags: 'a'})
-	app.use(morgan('short', {'stream': logStream}));
+	const log = fs.createWriteStream(path.join(__dirname, 'log'), {flags: 'a'})
+	app.use(morgan('short', {'stream': log}));
 	/** /login authenticates user logins by calling the loginUser function from login.js and responds with the result this
      * involves bcrypt hashing
      */
