@@ -1,5 +1,6 @@
 # Your Sport: The Social platform for Exercise
 [![codecov](https://codecov.io/gh/ethancowey/SportApplicationBSFP/branch/master/graph/badge.svg?token=VG2BG5QU0B)](https://codecov.io/gh/ethancowey/SportApplicationBSFP)
+
 ##Introduction
 This is a MERN stack application which runs using docker containers as part of my assessment for CSC3131.
 
