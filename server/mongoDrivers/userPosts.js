@@ -1,3 +1,6 @@
+/**
+ * Defines the post object schema which can be used as a constructor by importing it as UserPosts.
+ */
 const mongoose = require('mongoose');
 
 const userPostsSchema = mongoose.Schema({

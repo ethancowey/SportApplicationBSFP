@@ -25,16 +25,17 @@ const postRanker = require('./components/postRanker');
 const serverFilter = require('./components/serverFilter');
 const UserPosts = require('./mongoDrivers/userPosts');
 
+/**
+ * Cluster setup to have multiple threads running to scale up the servers capabilities
+ */
 if (cluster.isMaster) {
-	// Count the machine's CPUs
+	// Get the number of CPUs as this is how many workers we can make
 	const cpuCount = require('os').cpus().length;
-
 	// Create a worker for each CPU
 	for (let i = 0; i < cpuCount; i += 1) {
 		cluster.fork();
 	}
-
-// Code to run if we're in a worker process
+// Worker will listen for commands using code below
 } else {
 	app.use(bodyParser.json());
 	app.use(cors());

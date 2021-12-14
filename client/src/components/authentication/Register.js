@@ -8,6 +8,9 @@ import {Link} from 'react-router-dom';
 
 export default function Register() {
 	const navigate = useNavigate();
+	/**
+	 * When form is submitted call registerPost() to send data to the server
+	 */
 	const handleSubmit = async e => {
 		e.preventDefault();
 		await registerPost();

@@ -9,7 +9,9 @@ import '../../App.css';
 import {Link} from 'react-router-dom';
 
 export default function Dashboard() {
-
+	/**
+	 * When form is submitted call makePost() to send data to the server
+	 */
 	const handleSubmit = async e => {
 		e.preventDefault();
 		await makePost();

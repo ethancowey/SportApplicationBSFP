@@ -1,4 +1,6 @@
-# pull official base image
+# Docker file to create the node server Docker file made with guidance from Snyk and following this tutorial:
+# https://mherman.org/blog/dockerizing-a-react-app/
+# pull updated node base image currebtly with no vulnrabilities known to Snyk
 FROM node:16.13.0-alpine
 
 # set working directory

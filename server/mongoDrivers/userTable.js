@@ -1,3 +1,6 @@
+/**
+ * Defines the user object schema which can be used as a constructor by importing it as UserTable.
+ */
 const mongoose = require('mongoose');
 
 const userTableSchema = mongoose.Schema({

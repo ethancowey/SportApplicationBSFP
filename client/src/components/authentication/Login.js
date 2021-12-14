@@ -8,6 +8,9 @@ import {Link} from 'react-router-dom';
 
 export default function Login() {
 	const navigate = useNavigate();
+	/**
+	 * When form is submitted call loginPost() to send data to the server
+	 */
 	const handleSubmit = async e => {
 		e.preventDefault();
 		await loginPost();
