@@ -5,6 +5,7 @@
 
 This is a MERN stack application which runs using docker containers as part of my assessment for CSC3131.
 
+This a social platform for athletes and amateurs to share their exercise activities in posts.
 1. How to run the project.
 2. Running tests.
 3. Features and how it interacts with the 3 tier architecture.
