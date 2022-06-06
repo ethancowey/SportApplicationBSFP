@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is a MERN stack application which runs using docker containers as part of my assessment for CSC3131.
+This is a MERN stack application which runs using docker containers.
 
 This a social platform for athletes and amateurs to share their exercise activities in posts.
 1. How to run the project.
