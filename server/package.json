@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "jest": "^27.4.3",
     "mongoose": "^6.0.12",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.1"
   },
   "devDependencies": {
     "cors": "^2.8.5",
