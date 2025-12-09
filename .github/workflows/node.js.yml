@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x] # Node 12/14/16 are EOL
+        node-version: [18.x]   # stick with modern Node
 
     steps:
     - uses: actions/checkout@v4
@@ -27,17 +27,21 @@ jobs:
         cache: npm
         cache-dependency-path: server/package-lock.json
 
-- name: Install client deps
-  working-directory: client
-  run: npm ci
+    # Install dependencies reproducibly
+    - name: Install client deps
+      working-directory: client
+      run: npm ci
 
-- name: Install server deps
-  working-directory: server
-  run: npm ci
+    - name: Install server deps
+      working-directory: server
+      run: npm ci
 
-    
-    - run: npm run deps
-    - run: npm run build
+    # Build step with legacy provider enabled
+    - name: Build project
+      run: npm run build
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
+
     - run: npm test
 
     - name: Upload coverage to Codecov
