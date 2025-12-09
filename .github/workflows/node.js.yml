@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x] # Node 12/14/16 are EOL
+        node-version: [12.x, 14.x, 16.x] # Node 12/14/16 are EOL
 
     steps:
     - uses: actions/checkout@v4
