@@ -28,6 +28,9 @@ jobs:
         cache-dependency-path: server/package-lock.json
 
     # Install dependencies reproducibly
+    - name: Install root deps
+      run: npm ci
+    
     - name: Install client deps
       working-directory: client
       run: npm ci
